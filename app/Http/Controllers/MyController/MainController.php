@@ -58,13 +58,20 @@ class MainController extends Controller
                 $sinhvien[0]->lichhocs()->attach($lichhoc['id'], ['state' => 0]);
 
                 return Response()->json([
-                   $sinhvien[0]['name']
+                   $sinhvien[0]['name'],
+                   $sinhvien[0]['MASV'],
+
                 ]);
             } elseif (date('H:i') <= $endtime) {
                 $sinhvien[0]->lichhocs()->updateExistingPivot($lichhoc['id'], ['state' => 1]);
 
                 return Response()->json([
-                    $sinhvien[0]['name']
+                    $sinhvien[0]['name'],
+                    $sinhvien[0]['MASV'],
+                ]);
+            } else {
+                return Response()->json([
+                    'Khong Thanh Cong',
                 ]);
             }
         }
